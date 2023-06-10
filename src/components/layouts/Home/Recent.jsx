@@ -23,7 +23,7 @@ function Recent() {
                 className="rows"
             >
                 <SwiperSlide className="slides">
-                    <Link to={`view/id`}>
+                    <Link to={`/view/id`}>
                         <div className="head">
                             <h4>Remaining time</h4>
                             <h2>12:23M:02S</h2>
@@ -41,7 +41,7 @@ function Recent() {
                     </Link>
                 </SwiperSlide>
                 <SwiperSlide className="slides">
-                    <Link to={`view/id`}>
+                    <Link to={`/view/id`}>
                         <div className="head">
                             <h4>Remaining time</h4>
                             <h2>12:23M:02S</h2>
@@ -59,7 +59,7 @@ function Recent() {
                     </Link>
                 </SwiperSlide>
                 <SwiperSlide className="slides">
-                    <Link to={`view/id`}>
+                    <Link to={`/view/id`}>
                         <div className="head">
                             <h4>Remaining time</h4>
                             <h2>12:23M:02S</h2>
@@ -77,7 +77,7 @@ function Recent() {
                     </Link>
                 </SwiperSlide>
                 <SwiperSlide className="slides">
-                    <Link to={`view/id`}>
+                    <Link to={`/view/id`}>
                         <div className="head">
                             <h4>Remaining time</h4>
                             <h2>12:23M:02S</h2>
@@ -95,7 +95,7 @@ function Recent() {
                     </Link>
                 </SwiperSlide>
                 <SwiperSlide className="slides">
-                    <Link to={`view/id`}>
+                    <Link to={`/view/id`}>
                         <div className="head">
                             <h4>Remaining time</h4>
                             <h2>12:23M:02S</h2>
@@ -113,7 +113,7 @@ function Recent() {
                     </Link>
                 </SwiperSlide>
                 <SwiperSlide className="slides">
-                    <Link to={`view/id`}>
+                    <Link to={`/view/id`}>
                         <div className="head">
                             <h4>Remaining time</h4>
                             <h2>12:23M:02S</h2>
@@ -131,7 +131,7 @@ function Recent() {
                     </Link>
                 </SwiperSlide>
             </Swiper>
-            <Link to="" className='view'>See more...</Link>
+            <Link to="/collection" className='view'>See more...</Link>
         </section>
     )
 }

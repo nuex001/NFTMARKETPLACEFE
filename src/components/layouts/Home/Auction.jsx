@@ -131,7 +131,7 @@ function Auction() {
                     </Link>
                 </SwiperSlide>
             </Swiper>
-            <Link to="" className='view'>See more...</Link>
+            <Link to="/collection" className='view'>See more...</Link>
         </section>
     )
 }
