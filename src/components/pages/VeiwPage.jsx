@@ -13,12 +13,12 @@ function VeiwPage() {
         <>
             <div className="view">
                 <div className="display">
-                    <div className="mainDiv" ref={display} style={{ backgroundImage: "url('/nft6.jpg')" }}></div>
+                    <div className="mainDiv" ref={display} style={{ backgroundImage: "url('/nft7.jpg')" }}></div>
                     <div className="sidebar">
-                        <img src="/nft6.jpg" alt="" data-src="/nft6.jpg" onClick={toggleImg} />
+                        <img src="/nft6.jpg" alt="" data-src="/nft5.jpg" onClick={toggleImg} />
                         <img src="/nft7.jpg" alt="" data-src="/nft7.jpg" onClick={toggleImg} />
-                        <img src="/nft8.jpg" alt="" data-src="/nft8.jpg" onClick={toggleImg} />
-                        <img src="/nft9.jpg" alt="" data-src="/nft9.jpg" onClick={toggleImg} />
+                        <img src="/nft8.jpg" alt="" data-src="/nft7.jpg" onClick={toggleImg} />
+                        <img src="/nft9.jpg" alt="" data-src="/nft7.jpg" onClick={toggleImg} />
                     </div>
                 </div>
                 <div className="details">
