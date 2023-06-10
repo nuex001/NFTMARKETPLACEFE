@@ -1,0 +1,189 @@
+.container .collections header {
+  width: 100%;
+  height: auto;
+  background-color: var(--bg);
+  padding: 0em 2em;
+}
+
+.container .collections header form {
+  width: 100%;
+  height: auto;
+  padding: 2em 0em;
+}
+
+.container .collections header form input {
+  height: 50px;
+  width: 70%;
+  border: none;
+  outline: none;
+  padding: 15px;
+  border-radius: 7px;
+  color: var(--text);
+  background-color: transparent;
+  box-shadow: 0px 0px 4px 0px rgba(225, 225, 225, 0.5);
+}
+
+.container .collections header form button {
+  border: none;
+  outline: none;
+  font-family: 'Bebas Neue', sans-serif;
+  padding: 1em 4em;
+  color: var(--text);
+  border-radius: 10px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  background-color: var(--primary);
+  float: right;
+}
+
+.container .collections h1 {
+  font-size: 4em;
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(to bottom right, #fff, #9C22ED, #150023);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 2em;
+}
+
+.container .collections .collection {
+  width: 100%;
+  height: auto;
+  padding: 4em 2em;
+}
+
+.container .collections .collection ul {
+  width: 50%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container .collections .collection ul a {
+  border: none;
+  outline: none;
+  font-family: 'Bebas Neue', sans-serif;
+  padding: 0.8em 3em;
+  color: var(--text);
+  border-radius: 20px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: 500ms ease-in-out;
+}
+
+.container .collections .collection ul a.active {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.container .collections .collection .row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 4em 3em;
+  margin: 2em 0em;
+}
+
+.container .collections .collection .row a {
+  width: 300px;
+  padding: 1em 0.5em;
+  display: block;
+  border-radius: 10px;
+  color: var(--text);
+  box-shadow: 0px 0px 4px 0px rgba(225, 225, 225, 0.5);
+}
+
+.container .collections .collection .row a .head {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.container .collections .collection .row a .head h4 {
+  font-size: 1em;
+}
+
+.container .collections .collection .row a .head h2 {
+  margin-top: 0.2em;
+  font-size: 1em;
+  font-family: 'Bebas Neue', sans-serif;
+  background: linear-gradient(to bottom right, #fff, #9C22ED, #150023);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.container .collections .collection .row img {
+  object-fit: cover;
+  width: 100%;
+  height: 16em;
+  margin: 1em 0em;
+  border-radius: 10px;
+}
+
+.container .collections .collection .row .footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container .collections .collection .row .footer h3 {
+  font-size: 1em;
+  font-family: 'Bebas Neue', sans-serif;
+  background: linear-gradient(to bottom right, #fff, #9C22ED, #150023);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.container .collections .collection .row .footer h2 {
+  font-size: 1.2em;
+  margin-top: 0.2em;
+  display: flex;
+  align-items: center;
+}
+
+.container .collections .collection .row .footer h2 .icon {
+  color: var(--primary);
+  margin-right: 0.1em;
+}
+
+.container .collections .collection .row .footer h2 span {
+  margin-left: 0.2em;
+}
+.container .collections .collection .row .footer button {
+  border: none;
+  outline: none;
+  font-family: 'Bebas Neue', sans-serif;
+  padding: 0.8em 2em;
+  color: var(--text);
+  border-radius: 20px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  background-color: var(--primary);
+}
+
+
+
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width:768px) {
+  .container .collections header form input {
+    width: 100%;
+    margin: 2em 0em;
+  }
+
+  .container .collections .collection ul {
+    width: 100%;
+    overflow-x: scroll;
+  }
+
+  .container .collections header form button {
+    padding: 1em 8em;
+    float: left;
+    margin-left: 12%;
+  }
+}

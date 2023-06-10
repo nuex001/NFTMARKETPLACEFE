@@ -4,7 +4,10 @@ import './App.css'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import Home from "./components/pages/Home";
-
+import ScrollToTop from "./components/ScrollToTop"
+import Collections from "./components/pages/Collections";
+import VeiwPage from "./components/pages/VeiwPage";
+import Create from "./components/pages/Create";
 function App() {
   const [count, setCount] = useState(0)
 
@@ -12,13 +15,12 @@ function App() {
     <BrowserRouter>
     <div className="container">
       <Nav />
-      {/* <ScrollToTop/> */}
+      <ScrollToTop/>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        {/* <Route exact path="/contact" element={<Contact />} /> */}
-        {/* <Route exact path="/about" element={<About />} /> */}
-        {/* <Route exact path="/roadmap" element={<RoadMap />} /> */}
-        {/* <Route exact path="/service" element={<Services />} /> */}
+        <Route exact path="/collection/*" element={<Collections/>} />
+        <Route exact path="/view/:id" element={<VeiwPage/>} />
+        <Route exact path="/create" element={<Create/>} />
       </Routes>
       <Footer />
     </div>

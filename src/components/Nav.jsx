@@ -1,20 +1,28 @@
-import React from 'react'
-
+import React, { useRef } from 'react'
+import { Link } from 'react-router-dom'
+import { AiFillCloseCircle } from "react-icons/ai"
+import { HiOutlineBars3BottomRight } from "react-icons/hi2"
 function Nav() {
+    const navRef = useRef();
+    const toggleNav = () => {
+        navRef.current.classList.toggle("active");
+    }
     return (
         <nav>
-            <div className="logo">
-            STRT<span>NFT</span>
-            </div>
-            <ul>
-                <li><a href="#">MarketPlace</a></li>
-                <li><a href="#">Community</a></li>
-                <li><a href="#">Collection</a></li>
-                <li><a href="#">Create</a></li>
+            <a href='/' className="logo">
+                STRT<span>NFT</span>
+            </a>
+            <ul ref={navRef}>
+                <AiFillCloseCircle className='close' onClick={toggleNav} />
+                <li><Link to="#">MarketPlace</Link></li>
+                <li><Link to="#">Community</Link></li>
+                <li><Link to="#">Collection</Link></li>
+                <li><Link to="#">Create</Link></li>
+                <button>
+                    Connect Wallet
+                </button>
             </ul>
-            <button>
-                Connect Wallet
-            </button>
+            <HiOutlineBars3BottomRight className='menu' onClick={toggleNav} />
         </nav>
     )
 }

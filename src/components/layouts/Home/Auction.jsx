@@ -3,17 +3,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Link } from 'react-router-dom';
 import { FaEthereum } from "react-icons/fa"
-function Recent() {
+function Auction() {
     return (
         <section className="recent">
-            <h1>Recent Products</h1>
+            <h1>LIVE AUTION</h1>
             <Swiper
                 breakpoints={{
                     0: {
                         slidesPerView: 1,
                     },
                     768: {
-                        slidesPerView: 2,
+                        slidesPerView: 1,
                     },
                     1240: {
                         slidesPerView: 4,
@@ -136,4 +136,4 @@ function Recent() {
     )
 }
 
-export default Recent
+export default Auction
