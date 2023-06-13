@@ -135,6 +135,7 @@
       display: block;
       margin-left: auto;
       font-size: 2em;
+      cursor: pointer;
     }
 
     .container nav ul {
@@ -165,6 +166,7 @@
       top: 3%;
       right: 3%;
       font-size: 3em;
+      cursor: pointer;
     }
 
     .container nav ul a {

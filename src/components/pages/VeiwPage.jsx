@@ -41,6 +41,7 @@ function VeiwPage() {
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem hic error aspernatur commodi a, sint blanditiis nemo quidem obcaecati tempore beatae voluptas alias fuga expedita dolore asperiores eius illum nesciunt!
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem hic error aspernatur commodi a, sint blanditiis nemo quidem obcaecati tempore beatae voluptas alias fuga expedita dolore asperiores eius illum nesciunt!
                     </p>
+                    <h2>ID :123456789</h2>
                     <div className="footer">
                         <div className="box">
                             <h3>
@@ -58,3 +59,11 @@ function VeiwPage() {
 }
 
 export default VeiwPage
+
+
+/**
+ * name
+ * details
+ * id - imel 
+ * for ipfs
+ */

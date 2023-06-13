@@ -8,6 +8,7 @@ import ScrollToTop from "./components/ScrollToTop"
 import Collections from "./components/pages/Collections";
 import VeiwPage from "./components/pages/VeiwPage";
 import Create from "./components/pages/Create";
+import MyNft from "./components/pages/MyNft";
 function App() {
   const [count, setCount] = useState(0)
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/collection/*" element={<Collections/>} />
         <Route exact path="/view/:id" element={<VeiwPage/>} />
+        <Route exact path="/mynft" element={<MyNft/>} />
         <Route exact path="/create" element={<Create/>} />
       </Routes>
       <Footer />
@@ -29,3 +31,6 @@ function App() {
 }
 
 export default App
+
+// work on the create form
+// view nft page too

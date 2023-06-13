@@ -14,10 +14,10 @@ function Nav() {
             </a>
             <ul ref={navRef}>
                 <AiFillCloseCircle className='close' onClick={toggleNav} />
-                <li><Link to="/collection/">MarketPlace</Link></li>
-                <li><Link to="#">Community</Link></li>
-                <li><Link to="/collection/">Collection</Link></li>
-                <li><Link to="/create">Create</Link></li>
+                <li><Link to="/collection/" onClick={toggleNav}>MarketPlace</Link></li>
+                <li><Link to="#" onClick={toggleNav}>Community</Link></li>
+                <li><Link to="/mynft" onClick={toggleNav}>MyNFT</Link></li>
+                <li><Link to="/create" onClick={toggleNav}>Create</Link></li>
                 <button>
                     Connect Wallet
                 </button>

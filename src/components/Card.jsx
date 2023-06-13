@@ -4,7 +4,7 @@ import { FaEthereum } from "react-icons/fa"
 
 function Card() {
   return (
-    <Link to="../view" className="card">
+    <Link to={"../view/id"} className="card">
       <div className="head">
         <h4>Remaining time</h4>
         <h2>12:23M:02S</h2>

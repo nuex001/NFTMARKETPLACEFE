@@ -1,18 +1,10 @@
 .create {
     width: 100%;
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.create form {
-    width: 30%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    padding: 2em 2em;
 }
 
 .create h1 {
@@ -24,43 +16,112 @@
     -webkit-text-fill-color: transparent;
 }
 
-.create form input {
+.create form {
+    width: 95%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 2em 2em;
+    /* border: 2px solid var(--text); */
+}
+
+.create form .box {
+    width: 30%;
+    height: auto;
+}
+
+.create form .box:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+}
+
+.create form .box:first-child label {
     width: 100%;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.create form .box:first-child label .icon {
+    font-size: 15em;
+    cursor: pointer;
+}
+
+.create form .box:first-child img {
+    object-fit: cover;
+    width: 100%;
+    height: inherit;
+    border-radius: inherit;
+    cursor: pointer;
+}
+
+.create form .box:last-child {
+    width: 60%;
+}
+
+.create form .box:last-child .btnCont {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4em 4em;
+    border-radius: 5px;
+}
+
+.create form .box:last-child .cont {
+    width: 100%;
+    display: block;
+    height: inherit;
+}
+
+.create form .box .cont .row {
+    margin: 1.5em 0em;
+}
+
+.create form .box .cont .row label {
+    display: block;
+    margin: 0.5em auto;
+    font-family: 'Bebas Neue', sans-serif;
+    background: linear-gradient(to bottom right, #fff, #9C22ED, #150023);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.create form .box .cont .row input {
+    width: 60%;
     height: 3.5em;
-    margin: 1em 0em;
-    border: none;
+    padding: 1em 1.5em;
+    box-shadow: 0px 2px 3px 0px rgba(225, 225, 225, 0.5);
+    background-color: transparent;
     outline: none;
+    border-radius: 7px;
+    color: var(--text);
+}
+
+.create form .box .cont .row textarea {
+    width: 60%;
+    height: 12em;
     padding: 1.5em;
+    box-shadow: 0px 2px 3px 0px rgba(225, 225, 225, 0.5);
     background-color: transparent;
-    box-shadow: 0px 0px 5px 0px rgba(225, 225, 225, 0.7);
-    border-radius: 5px;
-    color: var(--text);
-}
-
-.create form input::placeholder {
-    color: var(--text);
-}
-
-.create form select {
-    width: 100%;
-    height: 3.5em;
-    margin: 1em 0em;
-    border: none;
     outline: none;
-    padding: 0em 1em;
-    background-color: transparent;
-    box-shadow: 0px 0px 5px 0px rgba(225, 225, 225, 0.7);
-    border-radius: 5px;
+    border-radius: 7px;
+    resize: none;
     color: var(--text);
 }
 
-.create form select option {
-    color: var(--bg);
+.create form .box .cont .row .selectInput {
+    width: 60%;
 }
 
-.create form p {
-    margin: 1em 0em;
-    color: var(--primary);
+.create form .box .cont .row .selectInput input {
+    box-shadow: none;
 }
 
 .create form button {
@@ -75,8 +136,16 @@
     background-color: var(--primary);
 }
 
+.create form .cont .row:last-child {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}
 
-
+.create form .cont .row:last-child button {
+    padding: 1em 5em;
+}
 
 
 
@@ -90,7 +159,35 @@
         width: 100%;
         height: auto;
         display: flex;
+        align-items: center;
         flex-direction: column;
         padding: 2em 2em;
     }
+
+    .create form .box {
+        width: 100%;
+        height: auto;
+    }
+
+    .create form .box .cont {
+        padding-top: 2em;
+    }
+
+    .create form .box:last-child {
+        width: 100%;
+    }
+
+    .create form .box .cont .row input,
+    .create form .box .cont .row textarea {
+        width: 100%;
+    }
+
+    .create form .box .cont .row .selectInput {
+        width: 100%;
+    }
+
+    .create form .cont .row:last-child {
+        width: 100%;
+    }
+
 }
