@@ -2,13 +2,18 @@ import React, { useRef, useState } from 'react'
 import "../../assets/css/create.css"
 import { LuUpload } from "react-icons/lu";
 import Select from "react-select";
-
-
+import ipfs from '../../utils/Ipfs';
+import { useDispatch, useSelector } from "react-redux";
+import { ethers } from "ethers"
+// import {readIPFSContent} from '../../utils/utils';
 function Create() {
   const labelRef = useRef();
+  const dispatch = useDispatch();
   const [imgPreview, setImgPreview] = useState(false);
   const [biddingState, setBiddingState] = useState(false);
   const [sellingState, setsellingState] = useState(false);
+  const [imageUrl, setImageUrl] = useState('');
+  const { error, success, contract, nft, owner } = useSelector((state) => state.nftsStore);
 
   const options = [
     { value: "laptop", label: "Laptop" },
@@ -39,9 +44,77 @@ function Create() {
     setsellingState(false);
   }
 
+  const submitToIpfs = async (e) => {
+    const formData = new FormData(e.target);
+    const files = formData.getAll('file');
+    const fileArray = Array.from(files);
+    if (fileArray.length < 4 && fileArray.length > 1 || id !== "") {
+      const uploadedImages = await Promise.all(
+        fileArray.map(async (file) => {
+          const { cid } = await ipfs.add(file);
+          return cid.toString();
+        })
+      );
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+      const enteredId = formData.get('id');
+      const name = formData.get('name');
+
+      const data = {
+        images: uploadedImages,
+        Id: enteredId,
+        name: name,
+      };
+
+      const { cid } = await ipfs.add(JSON.stringify(data));
+      const tokenUrl = cid.toString();
+      return tokenUrl;
+    }
+  }
+
+  const onSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const id = e.target.id.value;
+      const name = e.target.name.value;
+      const time = e.target.time.value;
+      const price = e.target.price.value;
+      const type = e.target.type.value;
+      const details = e.target.details.value;
+      const file = e.target.file.value
+      if (id.trim() !== "" && name.trim() !== "" && time.trim() !== "" && price.trim() !== "" && type.trim() !== "" && details.trim() !== "" && file.trim() !== "") {
+
+        // const tokenUrl = await submitToIpfs(e);
+        // console.log('CID:', tokenUrl);
+        // Hardcoded value in Ether
+        const valueInEther = 0.00025;
+
+        // Convert Ether to Wei
+        const valueInWei = ethers.utils.parseEther(valueInEther.toString())
+        const valueAsString = valueInWei.toString();
+        const unixTimestamp = Math.floor(new Date(time).getTime() / 1000);
+        if (contract) {
+          const res = await contract.methods.createToken(
+            "tokenUrl", // IPFS
+            price,
+            type,
+            biddingState,
+            details,
+            unixTimestamp
+          ).send(
+            {
+              from: owner,
+              value: valueAsString
+            }
+          );
+          // dispatch(setNft(res));
+          console.log(res);
+        }
+      }else{
+        
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   //SELECT STYLES
@@ -168,22 +241,7 @@ function Create() {
               </div>
             </div>
           }
-
         </div>
-        {/* <input type="file" name='file' multiple accept='images/*' style={{boxShadow:"none"}}/>
-        <input type="text" name='id' placeholder='id'/>
-        <input type="number" name='price' placeholder='price'/>
-        <select name="category" id="">
-            <option value="mobile">Mobile</option>
-            <option value="laptop">laptop</option>
-            <option value="kitchenutensils">Kitchen Utensils</option>
-        </select>
-        <select name="Method" id="">
-            <option value="auction">Auction</option>
-            <option value="sale">Sale</option>
-        </select>
-        <p>NOTE: we only accept payment with eth</p>
-        <button>Create</button> */}
       </form>
     </section>
   )

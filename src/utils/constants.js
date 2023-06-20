@@ -1,4 +1,4 @@
-export const contractAddress = "0x9D1056e05C78aAd9AD47780977D33D3821caf7cD"
+export const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
 
 export const contractAbi = [
     {
@@ -8,32 +8,42 @@ export const contractAbi = [
     },
     {
         "inputs": [],
-        "name": "StrtM__EmptyInputs",
+        "name": "NFTMARKETPLACE__Ended",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "StrtM__NotAuthorized",
+        "name": "NFTMARKETPLACE__NotMEMBER",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "StrtM__bountyFinished",
+        "name": "NFTMARKETPLACE__NotStarted",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "StrtM__spaceIsFull",
+        "name": "NFTMARKETPLACE__OnlyForBidding",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "StrtM__streamed",
+        "name": "NFTMARKETPLACE__OnlyOwner",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "StrtM__titleExist",
+        "name": "NFTMARKETPLACE__UnAuthorized",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "NFTMARKETPLACE__lowListingPrice",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "NFTMARKETPLACE__lowPrice",
         "type": "error"
     },
     {
@@ -42,17 +52,23 @@ export const contractAbi = [
             {
                 "indexed": true,
                 "internalType": "address",
-                "name": "from",
+                "name": "owner",
                 "type": "address"
             },
             {
-                "indexed": false,
+                "indexed": true,
+                "internalType": "address",
+                "name": "approved",
+                "type": "address"
+            },
+            {
+                "indexed": true,
                 "internalType": "uint256",
-                "name": "amount",
+                "name": "tokenId",
                 "type": "uint256"
             }
         ],
-        "name": "allocatedSpaceFundz",
+        "name": "Approval",
         "type": "event"
     },
     {
@@ -61,23 +77,42 @@ export const contractAbi = [
             {
                 "indexed": true,
                 "internalType": "address",
-                "name": "reciver",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "operator",
                 "type": "address"
             },
             {
                 "indexed": false,
+                "internalType": "bool",
+                "name": "approved",
+                "type": "bool"
+            }
+        ],
+        "name": "ApprovalForAll",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
                 "internalType": "uint256",
-                "name": "amount",
+                "name": "_fromTokenId",
                 "type": "uint256"
             },
             {
-                "indexed": true,
-                "internalType": "string",
-                "name": "title",
-                "type": "string"
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "_toTokenId",
+                "type": "uint256"
             }
         ],
-        "name": "bountyPaid",
+        "name": "BatchMetadataUpdate",
         "type": "event"
     },
     {
@@ -92,47 +127,185 @@ export const contractAbi = [
             {
                 "indexed": false,
                 "internalType": "uint256",
-                "name": "totalamount",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "Bid",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "buyer",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "tokenId",
                 "type": "uint256"
             },
             {
-                "indexed": true,
-                "internalType": "string",
-                "name": "title",
-                "type": "string"
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "price",
+                "type": "uint256"
             }
         ],
-        "name": "musicCreated",
+        "name": "CreateMarketSale",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "highestBidder",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "highestBid",
+                "type": "uint256"
+            }
+        ],
+        "name": "End",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "_tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "MetadataUpdate",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "seller",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "price",
+                "type": "uint256"
+            }
+        ],
+        "name": "Resell",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "Transfer",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "bidder",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "WithdrawBids",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "seller",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "price",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "bool",
+                "name": "bidding",
+                "type": "bool"
+            },
+            {
+                "indexed": false,
+                "internalType": "bool",
+                "name": "sold",
+                "type": "bool"
+            }
+        ],
+        "name": "idMarketCreated",
         "type": "event"
     },
     {
         "inputs": [
             {
-                "internalType": "string",
-                "name": "title",
-                "type": "string"
+                "internalType": "address",
+                "name": "_member",
+                "type": "address"
             }
         ],
-        "name": "checkifStreamed",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "string",
-                "name": "title",
-                "type": "string"
-            }
-        ],
-        "name": "claimBounty",
+        "name": "addmember",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -140,42 +313,30 @@ export const contractAbi = [
     {
         "inputs": [
             {
-                "internalType": "string",
-                "name": "title",
-                "type": "string"
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
             },
             {
                 "internalType": "uint256",
-                "name": "totalStreams",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "storageSpace",
+                "name": "tokenId",
                 "type": "uint256"
             }
         ],
-        "name": "createMusic",
+        "name": "approve",
         "outputs": [],
-        "stateMutability": "payable",
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "getAllocatedSpace",
-        "outputs": [
+        "inputs": [
             {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
             }
         ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getAllocatedSpaceFundz",
+        "name": "balanceOf",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -189,12 +350,63 @@ export const contractAbi = [
     {
         "inputs": [
             {
-                "internalType": "string",
-                "name": "title",
-                "type": "string"
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
             }
         ],
-        "name": "getAmountPerMusic",
+        "name": "bid",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "createMarketSale",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "tokenUrl",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "price",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string",
+                "name": "itemType",
+                "type": "string"
+            },
+            {
+                "internalType": "bool",
+                "name": "bidding",
+                "type": "bool"
+            },
+            {
+                "internalType": "string",
+                "name": "_details",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            }
+        ],
+        "name": "createToken",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -202,7 +414,350 @@ export const contractAbi = [
                 "type": "uint256"
             }
         ],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "end",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "fetchMarketItem",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "tokenId",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "address payable",
+                        "name": "seller",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address payable",
+                        "name": "owner",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "price",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "itemType",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "bidding",
+                        "type": "bool"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "details",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "sold",
+                        "type": "bool"
+                    }
+                ],
+                "internalType": "struct NFTMARKETPLACE.MarketItem[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "fetchMyNFTs",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "tokenId",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "address payable",
+                        "name": "seller",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address payable",
+                        "name": "owner",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "price",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "itemType",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "bidding",
+                        "type": "bool"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "details",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "sold",
+                        "type": "bool"
+                    }
+                ],
+                "internalType": "struct NFTMARKETPLACE.MarketItem[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "fetchNFTsDetails",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "tokenId",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "address payable",
+                        "name": "seller",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address payable",
+                        "name": "owner",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "price",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "itemType",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "bidding",
+                        "type": "bool"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "details",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "sold",
+                        "type": "bool"
+                    }
+                ],
+                "internalType": "struct NFTMARKETPLACE.MarketItem",
+                "name": "",
+                "type": "tuple"
+            },
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "_owner",
+                "type": "address"
+            }
+        ],
+        "name": "filterNftByAdress",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "tokenId",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "address payable",
+                        "name": "seller",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address payable",
+                        "name": "owner",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "price",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "itemType",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "bidding",
+                        "type": "bool"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "details",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "sold",
+                        "type": "bool"
+                    }
+                ],
+                "internalType": "struct NFTMARKETPLACE.MarketItem[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "cat",
+                "type": "string"
+            }
+        ],
+        "name": "filterNftCat",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "tokenId",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "address payable",
+                        "name": "seller",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address payable",
+                        "name": "owner",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "price",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "itemType",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "bidding",
+                        "type": "bool"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "details",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "sold",
+                        "type": "bool"
+                    }
+                ],
+                "internalType": "struct NFTMARKETPLACE.MarketItem[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "getApproved",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getListing",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "pure",
         "type": "function"
     },
     {
@@ -221,12 +776,91 @@ export const contractAbi = [
     {
         "inputs": [
             {
+                "internalType": "address",
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "operator",
+                "type": "address"
+            }
+        ],
+        "name": "isApprovedForAll",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "name",
+        "outputs": [
+            {
                 "internalType": "string",
-                "name": "title",
+                "name": "",
                 "type": "string"
             }
         ],
-        "name": "getTotalStreams",
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "ownerOf",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "price",
+                "type": "uint256"
+            }
+        ],
+        "name": "reSellToken",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "s_bids",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -240,47 +874,189 @@ export const contractAbi = [
     {
         "inputs": [
             {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "s_members",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "safeTransferFrom",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "data",
+                "type": "bytes"
+            }
+        ],
+        "name": "safeTransferFrom",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "operator",
+                "type": "address"
+            },
+            {
+                "internalType": "bool",
+                "name": "approved",
+                "type": "bool"
+            }
+        ],
+        "name": "setApprovalForAll",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "startAuction",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes4",
+                "name": "interfaceId",
+                "type": "bytes4"
+            }
+        ],
+        "name": "supportsInterface",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "symbol",
+        "outputs": [
+            {
                 "internalType": "string",
-                "name": "title",
+                "name": "",
                 "type": "string"
             }
         ],
-        "name": "getTotalamount",
-        "outputs": [
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
             {
                 "internalType": "uint256",
-                "name": "",
+                "name": "tokenId",
                 "type": "uint256"
+            }
+        ],
+        "name": "tokenURI",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
             }
         ],
         "stateMutability": "view",
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "increaseSpace",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "s_allocatedSpaceFundz",
-        "outputs": [
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+            },
             {
                 "internalType": "uint256",
-                "name": "",
+                "name": "tokenId",
                 "type": "uint256"
             }
         ],
-        "stateMutability": "view",
+        "name": "transferFrom",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "withdraw",
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "withdrawBids",
         "outputs": [],
-        "stateMutability": "payable",
+        "stateMutability": "nonpayable",
         "type": "function"
     }
 ]

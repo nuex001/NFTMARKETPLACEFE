@@ -24,11 +24,6 @@ const options = {
   }
 }
 
-// const walletConnectProvider  = new WalletConnectProvider({
-//   rpc: {
-//     11155111: import.meta.env.VITE_REACT_APP_INFURA_ID, // Replace with your Infura project ID
-//   },
-// });
 const web3Modal = new Web3Modal({
   cacheProvider: true,
   providerOptions: options,

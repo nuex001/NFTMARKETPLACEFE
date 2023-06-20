@@ -166,7 +166,10 @@
   background-color: var(--primary);
 }
 
-
+.container .collections .collection .row .icon{
+  color: var(--text);
+  font-size: 10em;
+}
 
 
 /* MOBILE RESPONSIVENESS */

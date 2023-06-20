@@ -32,5 +32,3 @@ function App() {
 
 export default App
 
-// work on the create form
-// view nft page too

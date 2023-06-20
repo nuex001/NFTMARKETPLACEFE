@@ -118,6 +118,11 @@
     background-color: var(--primary);
 }
 
+.view .icon{
+    color: var(--text);
+    font-size: 15em;
+    margin: 0.3em auto;
+}
 
 
 

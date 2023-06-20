@@ -1,10 +1,17 @@
 import React from 'react'
 
-function Header() {
+function Header({setAddress}) {
+    
+    const onSubmit = (e) =>{
+        e.preventDefault();
+      if (e.target.address.value.trim() !== "") {
+         setAddress(e.target.address.value)
+      }
+    }
     return (
         <header>
-            <form action="">
-                <input type="text" placeholder='0xxx.....' />
+            <form action="" onSubmit={onSubmit}>
+                <input type="text" name='address' placeholder='0xxx.....'/>
                 <button>Check</button>
             </form>
             <h1>Collections</h1>
