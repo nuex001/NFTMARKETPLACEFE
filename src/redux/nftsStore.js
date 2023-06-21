@@ -44,6 +44,7 @@ const nftSlice = createSlice({
             };
         },
         setNfts(state, action) {
+            console.log(action.payload);
             return {
                 ...state,
                 nfts: action.payload

@@ -20,7 +20,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/collection/*" element={<Collections/>} />
-        <Route exact path="/view/:id" element={<VeiwPage/>} />
+        <Route exact path="/view/:tokenId" element={<VeiwPage/>} />
         <Route exact path="/mynft" element={<MyNft/>} />
         <Route exact path="/create" element={<Create/>} />
       </Routes>

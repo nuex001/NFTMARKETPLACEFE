@@ -147,7 +147,11 @@
     padding: 1em 5em;
 }
 
-
+.create form span{
+    font-size: 1em;
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--primary);
+}
 
 /* MOBILE RESPONSIVENESS */
 @media (max-width:768px) {

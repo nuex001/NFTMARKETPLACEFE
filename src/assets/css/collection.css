@@ -166,7 +166,7 @@
   background-color: var(--primary);
 }
 
-.container .collections .collection .row .icon{
+ .empty{
   color: var(--text);
   font-size: 10em;
 }

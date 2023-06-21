@@ -4,7 +4,12 @@ import { LuUpload } from "react-icons/lu";
 import Select from "react-select";
 import ipfs from '../../utils/Ipfs';
 import { useDispatch, useSelector } from "react-redux";
-import { ethers } from "ethers"
+import { ethers } from "ethers";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Web3 from "web3"
+
 // import {readIPFSContent} from '../../utils/utils';
 function Create() {
   const labelRef = useRef();
@@ -21,6 +26,31 @@ function Create() {
     { value: "desktop", label: "Desktop" },
     { value: "kitchen", label: "Kitchen utensils" },
   ];
+
+  const errorMsgs = (e) =>
+    toast(e, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      type: "error",
+      theme: "dark",
+    });
+  const successMsg = (e) =>
+    toast(e, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      type: "success",
+      theme: "dark",
+    });
 
   const onChangeFile = (e) => {
     // console.log(e.target.files.length);
@@ -76,25 +106,21 @@ function Create() {
       e.preventDefault();
       const id = e.target.id.value;
       const name = e.target.name.value;
-      const time = e.target.time.value;
+      const time = biddingState ? e.target.time.value : "0";
       const price = e.target.price.value;
       const type = e.target.type.value;
       const details = e.target.details.value;
-      const file = e.target.file.value
+      const file = e.target.file.value;
       if (id.trim() !== "" && name.trim() !== "" && time.trim() !== "" && price.trim() !== "" && type.trim() !== "" && details.trim() !== "" && file.trim() !== "") {
 
-        // const tokenUrl = await submitToIpfs(e);
+        const tokenUrl = await submitToIpfs(e);
         // console.log('CID:', tokenUrl);
-        // Hardcoded value in Ether
-        const valueInEther = 0.00025;
 
-        // Convert Ether to Wei
-        const valueInWei = ethers.utils.parseEther(valueInEther.toString())
-        const valueAsString = valueInWei.toString();
+        // Hardcoded value in Ether
         const unixTimestamp = Math.floor(new Date(time).getTime() / 1000);
         if (contract) {
           const res = await contract.methods.createToken(
-            "tokenUrl", // IPFS
+            tokenUrl, // IPFS
             price,
             type,
             biddingState,
@@ -103,19 +129,26 @@ function Create() {
           ).send(
             {
               from: owner,
-              value: valueAsString
+              value: Web3.utils.toWei(0.00025, "ether") 
             }
           );
-          // dispatch(setNft(res));
-          console.log(res);
+          successMsg("Created Successfully");
+          e.target.reset();
+          setImgPreview(false);
         }
-      }else{
-        
+      } else {
+        errorMsgs("Please Fill All inputs");
       }
     } catch (error) {
-      console.log(error);
+      if (error.message.includes("has not been authorized by the user")) {
+        errorMsgs("Not a member");
+      } else {
+        errorMsgs(error.message);
+      }
+      // console.log(error.message);
     }
   }
+
 
   //SELECT STYLES
   const style = {
@@ -145,6 +178,7 @@ function Create() {
 
   return (
     <section className="create">
+      <ToastContainer />
       <h1>CREATE NFT</h1>
       <form action="" encType='formdata/multipart' onSubmit={onSubmit}>
 
@@ -204,6 +238,7 @@ function Create() {
               <div className="row">
                 <button >Submit</button>
               </div>
+              <span>NOTE:0.0025 eth is the listing amount</span>
             </div>
           }
           {
@@ -223,10 +258,6 @@ function Create() {
                 <input type="number" name='price' id='price' placeholder='input price' />
               </div>
               <div className="row">
-                <label htmlFor="details">DETAILS</label>
-                <textarea name="details" id="details"></textarea>
-              </div>
-              <div className="row">
                 <label htmlFor="type">Category</label>
                 <Select
                   name="type"
@@ -237,8 +268,13 @@ function Create() {
                 />
               </div>
               <div className="row">
+                <label htmlFor="details">DETAILS</label>
+                <textarea name="details" id="details"></textarea>
+              </div>
+              <div className="row">
                 <button >Submit</button>
               </div>
+              <span>NOTE:0.0025 eth is the listing amount</span>
             </div>
           }
         </div>
