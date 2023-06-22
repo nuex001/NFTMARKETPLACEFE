@@ -46,6 +46,8 @@ function Nav() {
             dispatch(setContract(contract));
             dispatch(setProvider(web3));
             setConnected(account);
+            const res = await contract.methods.getOwner().call();
+            console.log(res);
         } catch (error) {
             console.log(error);
         }

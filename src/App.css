@@ -284,3 +284,11 @@
     }
 
   }
+
+  @media (max-width:667px) {
+    .container nav ul {
+      padding-top: 6em;
+      gap: 4em 3em;
+    }
+ 
+  }
